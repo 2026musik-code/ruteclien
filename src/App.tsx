@@ -28,6 +28,7 @@ import {
   Trash2,
   Save,
   Edit2,
+  Rocket,
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import type { Message, MediaState } from "./types";
@@ -1471,6 +1472,43 @@ export default function App() {
               </motion.div>
             ))}
           </div>
+
+          {/* Quick Start Guide */}
+          <div className="mt-16 mb-8">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
+                <Rocket className="w-5 h-5 text-emerald-400" />
+              </div>
+              <h2 className="text-2xl font-serif text-gray-100">Quick Start Guide</h2>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-white/[0.02] border border-emerald-500/10 rounded-2xl p-6 hover:border-emerald-500/30 transition-colors shadow-lg">
+                <div className="text-emerald-400 font-mono text-xs mb-4 px-2 py-1 bg-emerald-500/10 rounded w-fit border border-emerald-500/20">Step 1</div>
+                <h3 className="text-lg font-medium text-gray-200 mb-2">Get Your API Key</h3>
+                <p className="text-gray-400 text-sm font-light leading-relaxed">
+                  Navigate to the "Get Key" section to generate your unique RUTEclien API key. Keep this secure as it provides access to all models.
+                </p>
+              </div>
+              
+              <div className="bg-white/[0.02] border border-emerald-500/10 rounded-2xl p-6 hover:border-emerald-500/30 transition-colors shadow-lg">
+                <div className="text-emerald-400 font-mono text-xs mb-4 px-2 py-1 bg-emerald-500/10 rounded w-fit border border-emerald-500/20">Step 2</div>
+                <h3 className="text-lg font-medium text-gray-200 mb-2">Connect Your App</h3>
+                <p className="text-gray-400 text-sm font-light leading-relaxed">
+                  Use the universal <code className="bg-black/30 px-1.5 py-0.5 rounded text-gray-300 font-mono border border-white/5">/v1/chat/completions</code> endpoint. Just swap out the base URL and API key in your existing code.
+                </p>
+              </div>
+              
+              <div className="bg-white/[0.02] border border-emerald-500/10 rounded-2xl p-6 hover:border-emerald-500/30 transition-colors shadow-lg">
+                <div className="text-emerald-400 font-mono text-xs mb-4 px-2 py-1 bg-emerald-500/10 rounded w-fit border border-emerald-500/20">Step 3</div>
+                <h3 className="text-lg font-medium text-gray-200 mb-2">Explore Models</h3>
+                <p className="text-gray-400 text-sm font-light leading-relaxed">
+                  Test out different models in the Playground to find the perfect fit for your specific use case. From coding to creative writing.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <Footer />
         </main>
       </div>
