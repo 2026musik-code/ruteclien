@@ -213,7 +213,7 @@ app.post("/chat", async (c) => {
 
       const lastMessage = messages[messages.length - 1];
       const prompt = lastMessage.content;
-      const imageUrl = `https://pollinations.ai/p/${encodeURIComponent(
+      const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(
         prompt
       )}?width=1024&height=1024&nologo=true`;
 
@@ -245,12 +245,16 @@ app.post("/chat", async (c) => {
       const lastMessage = messages[messages.length - 1];
       const prompt = lastMessage.content;
 
+      const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(
+        prompt + " cinematic video frame"
+      )}?width=1024&height=576&nologo=true`;
+
       return new Response(
         `data: ${JSON.stringify({
           choices: [
             {
               delta: {
-                content: `Video generation for "${prompt}" is simulated in this preview. In a production environment, you would integrate a video API like Luma Dream Machine, RunwayML, or Kling AI here.`,
+                content: `Here is a simulated video frame for "${prompt}".\n\n![Video Frame](${imageUrl})\n\n*(Video generation is simulated in this preview. In a production environment, you would integrate a video API like Luma Dream Machine, RunwayML, or Kling AI here.)*`,
               },
             },
           ],
