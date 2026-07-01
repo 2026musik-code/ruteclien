@@ -210,7 +210,7 @@ app.get("/models", async (c) => {
   }
 });
 
-app.post("/chat", async (c) => {
+app.post("/v1/chat/completions", async (c) => {
   try {
     const authHeader = c.req.header("Authorization");
     const clientId = c.req.header("x-user-id");

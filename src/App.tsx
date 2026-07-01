@@ -152,9 +152,27 @@ const usageData = [
   { name: "Jun 30", requests: 850 },
 ];
 
+const Footer = () => (
+  <footer className="mt-20 pt-8 pb-6 border-t border-emerald-500/10 text-gray-500 font-light text-xs sm:text-sm flex flex-col lg:flex-row items-center justify-between gap-6">
+    <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/5 border border-emerald-500/10 rounded-full">
+      <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse"></div>
+      <span className="text-emerald-400/80 font-medium">All systems operational</span>
+    </div>
+    <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
+      <button onClick={() => {}} className="hover:text-emerald-400 transition-colors">Platform</button>
+      <button onClick={() => {}} className="hover:text-emerald-400 transition-colors">Documentation</button>
+      <button onClick={() => {}} className="hover:text-emerald-400 transition-colors">Pricing</button>
+      <button onClick={() => {}} className="hover:text-emerald-400 transition-colors">Terms of Service</button>
+    </div>
+    <div className="text-center lg:text-right font-mono text-[11px] sm:text-xs">
+      &copy; {new Date().getFullYear()} RUTEclien AI.<br className="lg:hidden" /> All rights reserved.
+    </div>
+  </footer>
+);
+
 export default function App() {
   const [view, setView] = useState<
-    "dashboard" | "chat" | "analytics" | "get-key" | "docs" | "admin"
+    "dashboard" | "chat" | "analytics" | "get-key" | "docs"
   >("dashboard");
   const [unlimitedPrice, setUnlimitedPrice] = useState(() => {
     return localStorage.getItem("ruteclien_unlimited_price") || "Rp 150.000";
@@ -399,7 +417,7 @@ export default function App() {
     ]);
 
     try {
-      const res = await fetch("/api/chat", {
+      const res = await fetch("/api/v1/chat/completions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -596,7 +614,7 @@ export default function App() {
               </button>
 
               <div className="my-2 border-t border-emerald-500/10"></div>
-
+              
               <button
                 onClick={() => {
                   window.location.href = "/admin";
@@ -808,6 +826,7 @@ export default function App() {
               </div>
             </div>
           </div>
+          <Footer />
         </main>
       </div>
     );
@@ -956,6 +975,7 @@ export default function App() {
               </ResponsiveContainer>
             </div>
           </div>
+          <Footer />
         </main>
       </div>
     );
@@ -1079,6 +1099,7 @@ export default function App() {
               </a>
             </div>
           </div>
+          <Footer />
         </main>
       </div>
     );
@@ -1144,13 +1165,13 @@ export default function App() {
             <div className="bg-[#061a0f] border border-emerald-500/10 rounded-2xl p-8 relative overflow-hidden group">
               <h3 className="text-xl font-serif text-gray-200 mb-4">Chat Completions endpoint</h3>
               <p className="text-gray-400 font-light mb-6">
-                Send a POST request to <code className="bg-white/10 px-2 py-1 rounded text-sm text-gray-300">/api/chat</code> to get model responses.
+                Send a POST request to <code className="bg-white/10 px-2 py-1 rounded text-sm text-gray-300">/v1/chat/completions</code> to get model responses.
               </p>
 
               <div className="bg-[#082414] border border-emerald-500/20 rounded-xl p-4 relative font-mono text-sm overflow-x-auto">
                 <button 
                   onClick={() => {
-                    const code = `curl -X POST https://api.ruteclien.com/api/chat \\
+                    const code = `curl -X POST https://api.ruteclien.com/v1/chat/completions \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer YOUR_API_KEY" \\
   -H "X-User-Id: YOUR_USER_ID" \\
@@ -1169,7 +1190,7 @@ export default function App() {
                   <Copy className="w-4 h-4" />
                 </button>
                 <pre className="text-gray-400 leading-relaxed text-xs sm:text-sm">
-<span className="text-emerald-400">curl</span> -X POST https://api.ruteclien.com/api/chat \<br/>
+<span className="text-emerald-400">curl</span> -X POST https://api.ruteclien.com/v1/chat/completions \<br/>
   -H <span className="text-amber-300">"Content-Type: application/json"</span> \<br/>
   -H <span className="text-amber-300">"Authorization: Bearer YOUR_API_KEY"</span> \<br/>
   -H <span className="text-amber-300">"X-User-Id: YOUR_USER_ID"</span> \<br/>
@@ -1184,6 +1205,7 @@ export default function App() {
               </div>
             </div>
           </div>
+          <Footer />
         </main>
       </div>
     );
@@ -1329,13 +1351,13 @@ export default function App() {
                   POST
                 </span>
                 <span className="text-gray-400 break-all md:break-normal text-xs sm:text-sm">
-                  {window.location.origin}/api/chat
+                  {window.location.origin}/v1/chat/completions
                 </span>
               </div>
               <pre className="text-gray-300 leading-relaxed overflow-x-auto whitespace-pre-wrap break-all md:whitespace-pre md:break-normal">
                 <span className="text-pink-400">curl</span> -X POST{" "}
                 <span className="text-green-300">
-                  "{window.location.origin}/api/chat"
+                  "{window.location.origin}/v1/chat/completions"
                 </span>{" "}
                 \ -H{" "}
                 <span className="text-green-300">
@@ -1424,7 +1446,7 @@ export default function App() {
                               POST
                             </span>
                             <span className="font-mono text-sm text-gray-400">
-                              /api/chat
+                              /v1/chat/completions
                             </span>
                           </div>
                           <h4 className="text-gray-100 font-medium text-lg font-serif">
@@ -1449,6 +1471,7 @@ export default function App() {
               </motion.div>
             ))}
           </div>
+          <Footer />
         </main>
       </div>
     );
