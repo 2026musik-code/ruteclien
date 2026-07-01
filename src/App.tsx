@@ -181,7 +181,11 @@ export default function App() {
   useEffect(() => {
     fetch("/api/admin/keys")
       .then((res) => res.json())
-      .then((data) => setApiKeys(data))
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setApiKeys(data);
+        }
+      })
       .catch(console.error);
   }, []);
 

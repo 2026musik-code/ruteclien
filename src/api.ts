@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 
 type Bindings = {
-  accounts_kv: KVNamespace;
+  accounts_kv: any;
   NVIDIA_API_KEY: string;
   ADMIN_TOKEN: string;
 };
@@ -29,8 +29,13 @@ async function saveAdminToken(c: any, token: string) {
 
 async function getApiKeys(c: any) {
   if (c.env?.accounts_kv) {
-    const keys = await c.env.accounts_kv.get("apiKeys");
-    return keys ? JSON.parse(keys) : [];
+    try {
+      const keys = await c.env.accounts_kv.get("apiKeys");
+      return keys ? JSON.parse(keys) : [];
+    } catch (e) {
+      console.error("Failed to parse apiKeys from KV:", e);
+      return [];
+    }
   }
   return localKeys;
 }

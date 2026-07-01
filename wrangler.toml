@@ -1,5 +1,10 @@
 name = "ruteclien-app"
-pages_build_output_dir = "dist"
+compatibility_date = "2024-03-20"
+main = "src/worker.ts"
+
+[assets]
+directory = "dist"
+binding = "ASSETS"
 
 [[kv_namespaces]]
 binding = "accounts_kv"
