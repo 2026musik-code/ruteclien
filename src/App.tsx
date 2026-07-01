@@ -95,9 +95,9 @@ const getCategoryColors = (category: string) => {
   if (category.includes("Vision"))
     return {
       border:
-        "border-blue-500/20 bg-blue-500/5 hover:border-blue-500/50 hover:bg-blue-500/10",
-      bar: "bg-blue-500/50 group-hover:bg-blue-400",
-      icon: "text-blue-400",
+        "border-emerald-500/20 bg-emerald-500/5 hover:border-emerald-500/50 hover:bg-emerald-500/10",
+      bar: "bg-emerald-500/50 group-hover:bg-emerald-400",
+      icon: "text-emerald-400",
     };
   if (category.includes("Image"))
     return {
@@ -116,9 +116,9 @@ const getCategoryColors = (category: string) => {
   if (category.includes("Reasoning"))
     return {
       border:
-        "border-purple-500/20 bg-purple-500/5 hover:border-purple-500/50 hover:bg-purple-500/10",
-      bar: "bg-purple-500/50 group-hover:bg-purple-400",
-      icon: "text-purple-400",
+        "border-teal-500/20 bg-teal-500/5 hover:border-teal-500/50 hover:bg-teal-500/10",
+      bar: "bg-teal-500/50 group-hover:bg-teal-400",
+      icon: "text-teal-400",
     };
   if (category.includes("Code"))
     return {
@@ -136,9 +136,9 @@ const getCategoryColors = (category: string) => {
     };
   return {
     border:
-      "border-indigo-500/20 bg-indigo-500/5 hover:border-indigo-500/50 hover:bg-indigo-500/10",
-    bar: "bg-indigo-500/50 group-hover:bg-indigo-400",
-    icon: "text-indigo-400",
+      "border-emerald-500/20 bg-emerald-500/5 hover:border-emerald-500/50 hover:bg-emerald-500/10",
+    bar: "bg-emerald-500/50 group-hover:bg-emerald-400",
+    icon: "text-emerald-400",
   };
 };
 
@@ -510,9 +510,9 @@ export default function App() {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-            className="absolute top-0 left-0 bottom-0 w-[280px] bg-[#050505] border-r border-white/5 flex flex-col"
+            className="absolute top-0 left-0 bottom-0 w-[280px] bg-[#061a0f] border-r border-emerald-500/10 flex flex-col"
           >
-            <div className="p-5 flex items-center justify-between border-b border-white/5">
+            <div className="p-5 flex items-center justify-between border-b border-emerald-500/10">
               <div className="flex items-center gap-3">
                 <h2 className="font-serif font-semibold text-lg tracking-wide text-gray-100">
                   RUTEclien
@@ -520,7 +520,7 @@ export default function App() {
               </div>
               <button
                 onClick={() => setShowMobileMenu(false)}
-                className="p-2 hover:bg-white/10 rounded-full text-gray-400 transition-colors"
+                className="p-2 hover:bg-emerald-500/20 rounded-full text-gray-400 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -534,8 +534,8 @@ export default function App() {
                 }}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                   view === "dashboard"
-                    ? "bg-indigo-500/10 text-indigo-300"
-                    : "text-gray-400 hover:bg-white/5 hover:text-gray-200"
+                    ? "bg-emerald-500/10 text-emerald-300"
+                    : "text-gray-400 hover:bg-emerald-500/10 hover:text-gray-200"
                 }`}
               >
                 <Activity className="w-5 h-5" />
@@ -551,8 +551,8 @@ export default function App() {
                 }}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                   view === "docs"
-                    ? "bg-indigo-500/10 text-indigo-300"
-                    : "text-gray-400 hover:bg-white/5 hover:text-gray-200"
+                    ? "bg-emerald-500/10 text-emerald-300"
+                    : "text-gray-400 hover:bg-emerald-500/10 hover:text-gray-200"
                 }`}
               >
                 <Terminal className="w-5 h-5" />
@@ -568,8 +568,8 @@ export default function App() {
                 }}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                   view === "chat"
-                    ? "bg-indigo-500/10 text-indigo-300"
-                    : "text-gray-400 hover:bg-white/5 hover:text-gray-200"
+                    ? "bg-emerald-500/10 text-emerald-300"
+                    : "text-gray-400 hover:bg-emerald-500/10 hover:text-gray-200"
                 }`}
               >
                 <Box className="w-5 h-5" />
@@ -585,8 +585,8 @@ export default function App() {
                 }}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                   view === "analytics"
-                    ? "bg-indigo-500/10 text-indigo-300"
-                    : "text-gray-400 hover:bg-white/5 hover:text-gray-200"
+                    ? "bg-emerald-500/10 text-emerald-300"
+                    : "text-gray-400 hover:bg-emerald-500/10 hover:text-gray-200"
                 }`}
               >
                 <BarChart3 className="w-5 h-5" />
@@ -595,13 +595,13 @@ export default function App() {
                 </span>
               </button>
 
-              <div className="my-2 border-t border-white/5"></div>
+              <div className="my-2 border-t border-emerald-500/10"></div>
 
               <button
                 onClick={() => {
                   window.location.href = "/admin";
                 }}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-gray-400 hover:bg-white/5 hover:text-gray-200`}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-gray-400 hover:bg-emerald-500/10 hover:text-gray-200`}
               >
                 <Terminal className="w-5 h-5" />
                 <span className="font-medium text-sm tracking-wide">
@@ -626,7 +626,7 @@ export default function App() {
                 </span>
               </button>
 
-              <div className="mt-4 pt-4 border-t border-white/5 space-y-3">
+              <div className="mt-4 pt-4 border-t border-emerald-500/10 space-y-3">
                 <div>
                   <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wider">
                     Your User ID
@@ -638,7 +638,7 @@ export default function App() {
                       setUserId(e.target.value);
                     }}
                     placeholder="user_..."
-                    className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-indigo-500/50 transition-colors"
+                    className="w-full bg-[#082414] border border-emerald-500/20 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-emerald-500/50 transition-colors"
                   />
                 </div>
                 <div>
@@ -652,12 +652,12 @@ export default function App() {
                       setUserApiKey(e.target.value);
                     }}
                     placeholder="sk-ruteclien-..."
-                    className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-indigo-500/50 transition-colors"
+                    className="w-full bg-[#082414] border border-emerald-500/20 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-emerald-500/50 transition-colors"
                   />
                 </div>
                 <button
                   onClick={handleConnect}
-                  className="w-full bg-indigo-500 hover:bg-indigo-400 text-white rounded-xl py-2 text-sm font-medium transition-colors flex items-center justify-center gap-2 mt-2"
+                  className="w-full bg-emerald-500 hover:bg-emerald-400 text-white rounded-xl py-2 text-sm font-medium transition-colors flex items-center justify-center gap-2 mt-2"
                 >
                   {isSaved ? (
                     <>
@@ -677,24 +677,24 @@ export default function App() {
 
   if (false && view === ("keys" as any)) {
     return (
-      <div className="min-h-screen bg-[#020202] text-gray-100 font-sans selection:bg-indigo-500/30">
+      <div className="min-h-screen bg-[#04120a] text-gray-100 font-sans selection:bg-emerald-500/30">
         {mobileMenuOverlay}
-        <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/5 bg-[#020202]/80 backdrop-blur-2xl">
+        <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-emerald-500/10 bg-[#04120a]/80 backdrop-blur-2xl">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setShowMobileMenu(true)}
-              className="sm:hidden p-2 -ml-2 hover:bg-white/10 rounded-full transition-colors text-gray-400 hover:text-white"
+              className="sm:hidden p-2 -ml-2 hover:bg-emerald-500/20 rounded-full transition-colors text-gray-400 hover:text-white"
             >
               <Menu className="w-5 h-5" />
             </button>
             <button
               onClick={() => setView("dashboard")}
-              className="hidden sm:block p-2 hover:bg-white/10 rounded-full transition-colors text-gray-400 hover:text-white mr-2"
+              className="hidden sm:block p-2 hover:bg-emerald-500/20 rounded-full transition-colors text-gray-400 hover:text-white mr-2"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
-            <div className="p-2 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-lg border border-indigo-500/20 shadow-[0_0_15px_rgba(99,102,241,0.1)]">
-              <Key className="w-6 h-6 text-indigo-400" />
+            <div className="p-2 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-lg border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+              <Key className="w-6 h-6 text-emerald-400" />
             </div>
             <h1 className="font-serif font-semibold text-xl tracking-wide text-gray-100">
               API <span className="font-light text-gray-500">Keys</span>
@@ -711,8 +711,8 @@ export default function App() {
             </p>
           </div>
 
-          <div className="bg-[#050505] border border-white/5 rounded-2xl p-8 relative overflow-hidden group">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-50" />
+          <div className="bg-[#061a0f] border border-emerald-500/10 rounded-2xl p-8 relative overflow-hidden group">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-lime-500 opacity-50" />
 
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
               <div>
@@ -726,7 +726,7 @@ export default function App() {
               </div>
               <button
                 onClick={generateApiKey}
-                className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition-all shadow-lg shadow-indigo-900/20"
+                className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition-all shadow-lg shadow-emerald-900/20"
               >
                 <Plus className="w-4 h-4" />
                 Generate New Key
@@ -737,7 +737,7 @@ export default function App() {
               {apiKeys.map((apiKey, index) => (
                 <div
                   key={apiKey.id}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#0a0a0a] border border-white/5 rounded-xl gap-4 hover:border-indigo-500/30 transition-colors"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#082414] border border-emerald-500/10 rounded-xl gap-4 hover:border-emerald-500/30 transition-colors"
                 >
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-1">
@@ -759,12 +759,12 @@ export default function App() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 bg-[#020202] border border-white/10 px-4 py-2 rounded-lg flex-1 sm:max-w-xs justify-between">
+                  <div className="flex items-center gap-3 bg-[#04120a] border border-emerald-500/20 px-4 py-2 rounded-lg flex-1 sm:max-w-xs justify-between">
                     <span className="font-mono text-sm text-gray-400 select-all truncate">
                       {apiKey.key.substring(0, 15)}********************
                     </span>
                     <button
-                      className="text-gray-500 hover:text-indigo-400 transition-colors"
+                      className="text-gray-500 hover:text-emerald-400 transition-colors"
                       title="Copy to clipboard"
                     >
                       <Copy className="w-4 h-4" />
@@ -779,12 +779,12 @@ export default function App() {
               )}
             </div>
 
-            <div className="mt-8 pt-8 border-t border-white/5">
+            <div className="mt-8 pt-8 border-t border-emerald-500/10">
               <h3 className="text-lg font-medium text-gray-200 mb-4">
                 Usage Limits
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-4 bg-white/5 border border-white/5 rounded-xl">
+                <div className="p-4 bg-white/5 border border-emerald-500/10 rounded-xl">
                   <div className="text-sm text-gray-400 mb-2">
                     Monthly Quota
                   </div>
@@ -795,10 +795,10 @@ export default function App() {
                     </span>
                   </div>
                   <div className="w-full bg-white/5 h-1.5 rounded-full mt-4 overflow-hidden">
-                    <div className="bg-indigo-500 h-full w-[12%]" />
+                    <div className="bg-emerald-500 h-full w-[12%]" />
                   </div>
                 </div>
-                <div className="p-4 bg-white/5 border border-white/5 rounded-xl">
+                <div className="p-4 bg-white/5 border border-emerald-500/10 rounded-xl">
                   <div className="text-sm text-gray-400 mb-2">Rate Limit</div>
                   <div className="text-2xl font-serif text-gray-200">
                     60{" "}
@@ -815,24 +815,24 @@ export default function App() {
 
   if (view === "analytics") {
     return (
-      <div className="min-h-screen bg-[#020202] text-gray-100 font-sans selection:bg-indigo-500/30">
+      <div className="min-h-screen bg-[#04120a] text-gray-100 font-sans selection:bg-emerald-500/30">
         {mobileMenuOverlay}
-        <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/5 bg-[#020202]/80 backdrop-blur-2xl">
+        <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-emerald-500/10 bg-[#04120a]/80 backdrop-blur-2xl">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setShowMobileMenu(true)}
-              className="sm:hidden p-2 -ml-2 hover:bg-white/10 rounded-full transition-colors text-gray-400 hover:text-white"
+              className="sm:hidden p-2 -ml-2 hover:bg-emerald-500/20 rounded-full transition-colors text-gray-400 hover:text-white"
             >
               <Menu className="w-5 h-5" />
             </button>
             <button
               onClick={() => setView("dashboard")}
-              className="hidden sm:block p-2 hover:bg-white/10 rounded-full transition-colors text-gray-400 hover:text-white mr-2"
+              className="hidden sm:block p-2 hover:bg-emerald-500/20 rounded-full transition-colors text-gray-400 hover:text-white mr-2"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
-            <div className="p-2 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-lg border border-indigo-500/20 shadow-[0_0_15px_rgba(99,102,241,0.1)]">
-              <Activity className="w-6 h-6 text-indigo-400" />
+            <div className="p-2 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-lg border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+              <Activity className="w-6 h-6 text-emerald-400" />
             </div>
             <h1 className="font-serif font-semibold text-xl tracking-wide text-gray-100">
               Usage <span className="font-light text-gray-500">Analytics</span>
@@ -850,7 +850,7 @@ export default function App() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-[#050505] border border-white/5 p-6 rounded-2xl shadow-inner group hover:border-indigo-500/30 transition-colors">
+            <div className="bg-[#061a0f] border border-emerald-500/10 p-6 rounded-2xl shadow-inner group hover:border-emerald-500/30 transition-colors">
               <div className="text-gray-400 text-sm mb-2 flex items-center gap-2">
                 <BarChart3 className="w-4 h-4" />
                 Total Requests (30d)
@@ -861,7 +861,7 @@ export default function App() {
               </div>
             </div>
 
-            <div className="bg-[#050505] border border-white/5 p-6 rounded-2xl shadow-inner group hover:border-indigo-500/30 transition-colors">
+            <div className="bg-[#061a0f] border border-emerald-500/10 p-6 rounded-2xl shadow-inner group hover:border-emerald-500/30 transition-colors">
               <div className="text-gray-400 text-sm mb-2 flex items-center gap-2">
                 <Activity className="w-4 h-4" />
                 Avg. Latency
@@ -875,7 +875,7 @@ export default function App() {
               </div>
             </div>
 
-            <div className="bg-[#050505] border border-white/5 p-6 rounded-2xl shadow-inner group hover:border-indigo-500/30 transition-colors">
+            <div className="bg-[#061a0f] border border-emerald-500/10 p-6 rounded-2xl shadow-inner group hover:border-emerald-500/30 transition-colors">
               <div className="text-gray-400 text-sm mb-2 flex items-center gap-2">
                 <Box className="w-4 h-4" />
                 Error Rate
@@ -890,8 +890,8 @@ export default function App() {
             </div>
           </div>
 
-          <div className="bg-[#050505] border border-white/5 rounded-2xl p-6 md:p-8 shadow-inner relative group">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 opacity-30 group-hover:opacity-60 transition-opacity" />
+          <div className="bg-[#061a0f] border border-emerald-500/10 rounded-2xl p-6 md:p-8 shadow-inner relative group">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 via-emerald-500 to-green-500 opacity-30 group-hover:opacity-60 transition-opacity" />
             <h3 className="text-lg font-medium text-gray-200 mb-8 flex items-center gap-2">
               Request Volume
             </h3>
@@ -936,7 +936,7 @@ export default function App() {
                   />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "#0a0a0a",
+                      backgroundColor: "#082414",
                       borderColor: "#ffffff1a",
                       borderRadius: "12px",
                       color: "#fff",
@@ -963,19 +963,19 @@ export default function App() {
 
   if (view === "get-key") {
     return (
-      <div className="min-h-screen bg-[#020202] text-gray-100 font-sans selection:bg-amber-500/30">
+      <div className="min-h-screen bg-[#04120a] text-gray-100 font-sans selection:bg-amber-500/30">
         {mobileMenuOverlay}
-        <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/5 bg-[#020202]/80 backdrop-blur-2xl">
+        <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-emerald-500/10 bg-[#04120a]/80 backdrop-blur-2xl">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setShowMobileMenu(true)}
-              className="sm:hidden p-2 -ml-2 hover:bg-white/10 rounded-full transition-colors text-gray-400 hover:text-white"
+              className="sm:hidden p-2 -ml-2 hover:bg-emerald-500/20 rounded-full transition-colors text-gray-400 hover:text-white"
             >
               <Menu className="w-5 h-5" />
             </button>
             <button
               onClick={() => setView("dashboard")}
-              className="hidden sm:block p-2 hover:bg-white/10 rounded-full transition-colors text-gray-400 hover:text-white mr-2"
+              className="hidden sm:block p-2 hover:bg-emerald-500/20 rounded-full transition-colors text-gray-400 hover:text-white mr-2"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
@@ -1002,7 +1002,7 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Free Plan */}
-            <div className="bg-[#050505] border border-white/5 rounded-3xl p-8 flex flex-col hover:border-white/10 transition-colors">
+            <div className="bg-[#061a0f] border border-emerald-500/10 rounded-3xl p-8 flex flex-col hover:border-emerald-500/20 transition-colors">
               <h3 className="text-xl font-medium text-gray-200 mb-2">Basic</h3>
               <div className="flex items-baseline gap-1 mb-6">
                 <span className="text-4xl font-serif text-white">Free</span>
@@ -1023,14 +1023,14 @@ export default function App() {
               </ul>
               <button
                 onClick={() => setView("dashboard")}
-                className="w-full py-3 rounded-xl border border-white/10 text-gray-300 font-medium hover:bg-white/5 transition-colors"
+                className="w-full py-3 rounded-xl border border-emerald-500/20 text-gray-300 font-medium hover:bg-emerald-500/10 transition-colors"
               >
                 Current Plan
               </button>
             </div>
 
             {/* Unlimited Plan */}
-            <div className="bg-gradient-to-b from-[#0a0a0a] to-[#050505] border border-amber-500/30 rounded-3xl p-8 flex flex-col relative overflow-hidden shadow-[0_0_30px_rgba(245,158,11,0.1)]">
+            <div className="bg-gradient-to-b from-[#082414] to-[#061a0f] border border-amber-500/30 rounded-3xl p-8 flex flex-col relative overflow-hidden shadow-[0_0_30px_rgba(245,158,11,0.1)]">
               <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-amber-400 to-orange-500" />
               <div className="absolute -top-12 -right-12 w-32 h-32 bg-amber-500/20 blur-3xl rounded-full" />
 
@@ -1086,24 +1086,24 @@ export default function App() {
 
   if (view === "docs") {
     return (
-      <div className="min-h-screen bg-[#020202] text-gray-100 font-sans selection:bg-indigo-500/30">
+      <div className="min-h-screen bg-[#04120a] text-gray-100 font-sans selection:bg-emerald-500/30">
         {mobileMenuOverlay}
-        <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/5 bg-[#020202]/80 backdrop-blur-2xl">
+        <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-emerald-500/10 bg-[#04120a]/80 backdrop-blur-2xl">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setShowMobileMenu(true)}
-              className="sm:hidden p-2 -ml-2 hover:bg-white/10 rounded-full transition-colors text-gray-400 hover:text-white"
+              className="sm:hidden p-2 -ml-2 hover:bg-emerald-500/20 rounded-full transition-colors text-gray-400 hover:text-white"
             >
               <Menu className="w-5 h-5" />
             </button>
             <button
               onClick={() => setView("dashboard")}
-              className="hidden sm:block p-2 hover:bg-white/10 rounded-full transition-colors text-gray-400 hover:text-white mr-2"
+              className="hidden sm:block p-2 hover:bg-emerald-500/20 rounded-full transition-colors text-gray-400 hover:text-white mr-2"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
-            <div className="p-2 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-lg border border-indigo-500/20 shadow-[0_0_15px_rgba(99,102,241,0.1)]">
-              <Terminal className="w-6 h-6 text-indigo-400" />
+            <div className="p-2 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-lg border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+              <Terminal className="w-6 h-6 text-emerald-400" />
             </div>
             <h1 className="font-serif font-semibold text-xl tracking-wide text-gray-100">
               API <span className="font-light text-gray-500">Docs</span>
@@ -1120,34 +1120,34 @@ export default function App() {
           </div>
 
           <div className="space-y-8">
-            <div className="bg-[#050505] border border-white/5 rounded-2xl p-8 relative overflow-hidden group">
+            <div className="bg-[#061a0f] border border-emerald-500/10 rounded-2xl p-8 relative overflow-hidden group">
               <h3 className="text-xl font-serif text-gray-200 mb-4">Authentication</h3>
               <p className="text-gray-400 font-light mb-6">
                 All requests must include your API Key in the <code className="bg-white/10 px-2 py-1 rounded text-sm text-gray-300">Authorization</code> header, and your User ID in the <code className="bg-white/10 px-2 py-1 rounded text-sm text-gray-300">X-User-Id</code> header.
               </p>
               
-              <div className="bg-[#0a0a0a] border border-white/10 rounded-xl p-4 relative font-mono text-sm">
+              <div className="bg-[#082414] border border-emerald-500/20 rounded-xl p-4 relative font-mono text-sm">
                 <button 
                   onClick={() => {
                     navigator.clipboard.writeText(`Authorization: Bearer YOUR_API_KEY\nX-User-Id: YOUR_USER_ID`);
                     alert("Headers copied to clipboard!");
                   }}
-                  className="absolute top-4 right-4 p-2 text-gray-500 hover:text-gray-300 hover:bg-white/10 rounded transition-colors"
+                  className="absolute top-4 right-4 p-2 text-gray-500 hover:text-gray-300 hover:bg-emerald-500/20 rounded transition-colors"
                 >
                   <Copy className="w-4 h-4" />
                 </button>
-                <div className="text-gray-400">Authorization: <span className="text-indigo-400">Bearer YOUR_API_KEY</span></div>
-                <div className="text-gray-400 mt-2">X-User-Id: <span className="text-indigo-400">YOUR_USER_ID</span></div>
+                <div className="text-gray-400">Authorization: <span className="text-emerald-400">Bearer YOUR_API_KEY</span></div>
+                <div className="text-gray-400 mt-2">X-User-Id: <span className="text-emerald-400">YOUR_USER_ID</span></div>
               </div>
             </div>
 
-            <div className="bg-[#050505] border border-white/5 rounded-2xl p-8 relative overflow-hidden group">
+            <div className="bg-[#061a0f] border border-emerald-500/10 rounded-2xl p-8 relative overflow-hidden group">
               <h3 className="text-xl font-serif text-gray-200 mb-4">Chat Completions endpoint</h3>
               <p className="text-gray-400 font-light mb-6">
                 Send a POST request to <code className="bg-white/10 px-2 py-1 rounded text-sm text-gray-300">/api/chat</code> to get model responses.
               </p>
 
-              <div className="bg-[#0a0a0a] border border-white/10 rounded-xl p-4 relative font-mono text-sm overflow-x-auto">
+              <div className="bg-[#082414] border border-emerald-500/20 rounded-xl p-4 relative font-mono text-sm overflow-x-auto">
                 <button 
                   onClick={() => {
                     const code = `curl -X POST https://api.ruteclien.com/api/chat \\
@@ -1164,7 +1164,7 @@ export default function App() {
                     navigator.clipboard.writeText(code);
                     alert("cURL snippet copied to clipboard!");
                   }}
-                  className="absolute top-4 right-4 p-2 text-gray-500 hover:text-gray-300 hover:bg-white/10 rounded transition-colors"
+                  className="absolute top-4 right-4 p-2 text-gray-500 hover:text-gray-300 hover:bg-emerald-500/20 rounded transition-colors"
                 >
                   <Copy className="w-4 h-4" />
                 </button>
@@ -1174,11 +1174,11 @@ export default function App() {
   -H <span className="text-amber-300">"Authorization: Bearer YOUR_API_KEY"</span> \<br/>
   -H <span className="text-amber-300">"X-User-Id: YOUR_USER_ID"</span> \<br/>
   -d <span className="text-amber-300">'{'{'}</span><br/>
-    <span className="text-indigo-300">"messages"</span>: [<br/>
-      {'{'}<span className="text-indigo-300">"role"</span>: <span className="text-emerald-300">"user"</span>, <span className="text-indigo-300">"content"</span>: <span className="text-emerald-300">"Hello!"</span>{'}'}<br/>
+    <span className="text-emerald-300">"messages"</span>: [<br/>
+      {'{'}<span className="text-emerald-300">"role"</span>: <span className="text-emerald-300">"user"</span>, <span className="text-emerald-300">"content"</span>: <span className="text-emerald-300">"Hello!"</span>{'}'}<br/>
     ],<br/>
-    <span className="text-indigo-300">"model"</span>: <span className="text-emerald-300">"gemini-2.5-pro"</span>,<br/>
-    <span className="text-indigo-300">"temperature"</span>: <span className="text-rose-300">0.7</span><br/>
+    <span className="text-emerald-300">"model"</span>: <span className="text-emerald-300">"gemini-2.5-pro"</span>,<br/>
+    <span className="text-emerald-300">"temperature"</span>: <span className="text-rose-300">0.7</span><br/>
   <span className="text-amber-300">{'}'}'</span>
                 </pre>
               </div>
@@ -1192,13 +1192,13 @@ export default function App() {
 
   if (view === "dashboard") {
     return (
-      <div className="min-h-screen bg-[#020202] text-gray-100 font-sans selection:bg-indigo-500/30">
+      <div className="min-h-screen bg-[#04120a] text-gray-100 font-sans selection:bg-emerald-500/30">
         {mobileMenuOverlay}
-        <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/5 bg-[#020202]/80 backdrop-blur-2xl">
+        <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-emerald-500/10 bg-[#04120a]/80 backdrop-blur-2xl">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setShowMobileMenu(true)}
-              className="sm:hidden p-2 -ml-2 hover:bg-white/10 rounded-full transition-colors text-gray-400 hover:text-white"
+              className="sm:hidden p-2 -ml-2 hover:bg-emerald-500/20 rounded-full transition-colors text-gray-400 hover:text-white"
             >
               <Menu className="w-5 h-5" />
             </button>
@@ -1215,7 +1215,7 @@ export default function App() {
                   setUserId(e.target.value);
                 }}
                 placeholder="Enter User ID"
-                className="w-32 bg-[#0a0a0a] border border-white/10 rounded-full px-4 py-1.5 text-xs text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-indigo-500/50 transition-colors"
+                className="w-32 bg-[#082414] border border-emerald-500/20 rounded-full px-4 py-1.5 text-xs text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-emerald-500/50 transition-colors"
               />
               <input
                 type="password"
@@ -1224,11 +1224,11 @@ export default function App() {
                   setUserApiKey(e.target.value);
                 }}
                 placeholder="Enter API Key"
-                className="w-40 bg-[#0a0a0a] border border-white/10 rounded-full px-4 py-1.5 text-xs text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-indigo-500/50 transition-colors"
+                className="w-40 bg-[#082414] border border-emerald-500/20 rounded-full px-4 py-1.5 text-xs text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-emerald-500/50 transition-colors"
               />
               <button
                 onClick={handleConnect}
-                className="bg-indigo-500 hover:bg-indigo-400 text-white rounded-full px-4 py-1.5 text-xs font-medium transition-colors flex items-center gap-1.5"
+                className="bg-emerald-500 hover:bg-emerald-400 text-white rounded-full px-4 py-1.5 text-xs font-medium transition-colors flex items-center gap-1.5"
               >
                 {isSaved ? (
                   <>
@@ -1280,9 +1280,9 @@ export default function App() {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-400 mb-6"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-emerald-500/20 text-xs text-gray-400 mb-6"
             >
-              <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+              <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
               <span>Gateway Version 2.0 is now live</span>
             </motion.div>
             <motion.h2
@@ -1309,12 +1309,12 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 md:p-8 mb-16 shadow-2xl backdrop-blur-sm"
+            className="bg-white/[0.02] border border-emerald-500/10 rounded-3xl p-6 md:p-8 mb-16 shadow-2xl backdrop-blur-sm"
           >
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-500/10 rounded-lg border border-blue-500/20">
-                  <Terminal className="w-5 h-5 text-blue-400" />
+                <div className="p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
+                  <Terminal className="w-5 h-5 text-emerald-400" />
                 </div>
                 <h3 className="text-lg font-medium text-gray-200 font-serif">
                   Quickstart Request
@@ -1322,10 +1322,10 @@ export default function App() {
               </div>
             </div>
 
-            <div className="bg-[#050505] border border-white/5 p-6 rounded-2xl font-mono text-sm text-gray-300 overflow-x-auto shadow-inner relative group">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 opacity-50" />
-              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-6 border-b border-white/5 pb-4">
-                <span className="text-xs font-sans bg-blue-500/20 text-blue-300 px-2.5 py-1 rounded-md border border-blue-500/20 font-semibold tracking-wider w-fit">
+            <div className="bg-[#061a0f] border border-emerald-500/10 p-6 rounded-2xl font-mono text-sm text-gray-300 overflow-x-auto shadow-inner relative group">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 via-emerald-500 to-green-500 opacity-50" />
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-6 border-b border-emerald-500/10 pb-4">
+                <span className="text-xs font-sans bg-emerald-500/20 text-emerald-300 px-2.5 py-1 rounded-md border border-emerald-500/20 font-semibold tracking-wider w-fit">
                   POST
                 </span>
                 <span className="text-gray-400 break-all md:break-normal text-xs sm:text-sm">
@@ -1346,14 +1346,14 @@ export default function App() {
                   "Content-Type: application/json"
                 </span>{" "}
                 \ -d <span className="text-yellow-300">'{"{"}</span>
-                <span className="text-indigo-300">"model"</span>:{" "}
+                <span className="text-emerald-300">"model"</span>:{" "}
                 <span className="text-green-300">
                   "stepfun-ai/step-3.7-flash"
                 </span>
-                ,<span className="text-indigo-300">"messages"</span>: [{"{"}
-                <span className="text-indigo-300">"role"</span>:{" "}
+                ,<span className="text-emerald-300">"messages"</span>: [{"{"}
+                <span className="text-emerald-300">"role"</span>:{" "}
                 <span className="text-green-300">"user"</span>,
-                <span className="text-indigo-300">"content"</span>:{" "}
+                <span className="text-emerald-300">"content"</span>:{" "}
                 <span className="text-green-300">
                   "Hello! What can you do?"
                 </span>
@@ -1373,7 +1373,7 @@ export default function App() {
             <input
               type="text"
               placeholder="Search available endpoints and models..."
-              className="w-full bg-[#050505] border border-white/10 rounded-xl py-4 pl-14 pr-6 text-gray-200 text-base font-light focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all shadow-lg"
+              className="w-full bg-[#061a0f] border border-emerald-500/20 rounded-xl py-4 pl-14 pr-6 text-gray-200 text-base font-light focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all shadow-lg"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -1393,14 +1393,14 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 + index * 0.1 }}
               >
-                <div className="flex items-center gap-3 mb-6 border-b border-white/5 pb-4">
+                <div className="flex items-center gap-3 mb-6 border-b border-emerald-500/10 pb-4">
                   <div className={getCategoryColors(groupName).icon}>
                     {getCategoryIcon(groupName)}
                   </div>
                   <h3 className="text-xl font-serif text-gray-200 tracking-wide">
                     {groupName}
                   </h3>
-                  <div className="ml-2 text-xs font-mono bg-white/5 text-gray-400 px-2 py-0.5 rounded-full border border-white/10">
+                  <div className="ml-2 text-xs font-mono bg-white/5 text-gray-400 px-2 py-0.5 rounded-full border border-emerald-500/20">
                     {models.length} models
                   </div>
                 </div>
@@ -1420,7 +1420,7 @@ export default function App() {
 
                         <div className="flex flex-col gap-2 relative z-10 w-full">
                           <div className="flex items-center gap-3">
-                            <span className="text-[10px] font-mono bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded border border-blue-500/20 tracking-wider">
+                            <span className="text-[10px] font-mono bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 tracking-wider">
                               POST
                             </span>
                             <span className="font-mono text-sm text-gray-400">
@@ -1437,7 +1437,7 @@ export default function App() {
                             <span className="w-1 h-1 bg-emerald-400 rounded-full" />
                             <span className="hidden sm:inline">Active</span>
                           </div>
-                          <div className="text-indigo-400/0 group-hover:text-indigo-400 transition-colors flex items-center text-sm font-light gap-1">
+                          <div className="text-emerald-400/0 group-hover:text-emerald-400 transition-colors flex items-center text-sm font-light gap-1">
                             Test API{" "}
                             <ChevronLeft className="w-4 h-4 rotate-180" />
                           </div>
@@ -1456,18 +1456,18 @@ export default function App() {
 
   // Chat View
   return (
-    <div className="flex flex-col h-screen bg-[#020202] text-gray-100 font-sans selection:bg-indigo-500/30">
+    <div className="flex flex-col h-screen bg-[#04120a] text-gray-100 font-sans selection:bg-emerald-500/30">
       {/* Header */}
-      <header className="flex items-center justify-between p-4 md:p-5 border-b border-white/5 bg-[#020202]/80 backdrop-blur-xl z-10">
+      <header className="flex items-center justify-between p-4 md:p-5 border-b border-emerald-500/10 bg-[#04120a]/80 backdrop-blur-xl z-10">
         <div className="flex items-center gap-4">
           <button
             onClick={() => setView("dashboard")}
-            className="p-2 hover:bg-white/10 rounded-full transition-colors text-gray-400 hover:text-white"
+            className="p-2 hover:bg-emerald-500/20 rounded-full transition-colors text-gray-400 hover:text-white"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
-          <div className="hidden sm:flex p-2 bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 rounded-xl border border-indigo-500/20 shadow-[0_0_15px_rgba(99,102,241,0.1)]">
-            <Terminal className="w-5 h-5 text-indigo-400" />
+          <div className="hidden sm:flex p-2 bg-gradient-to-tr from-emerald-500/20 to-teal-500/20 rounded-xl border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+            <Terminal className="w-5 h-5 text-emerald-400" />
           </div>
           <h1 className="font-serif font-semibold text-xl tracking-wide text-gray-100 hidden sm:block">
             API Playground
@@ -1490,20 +1490,20 @@ export default function App() {
           <select
             value={selectedModel}
             onChange={(e) => setSelectedModel(e.target.value)}
-            className="bg-[#050505] border border-white/10 text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-indigo-500/50 max-w-[200px] sm:max-w-[300px] truncate text-indigo-50 font-light hover:bg-white/5 transition-colors cursor-pointer appearance-none shadow-sm"
+            className="bg-[#061a0f] border border-emerald-500/20 text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-emerald-500/50 max-w-[200px] sm:max-w-[300px] truncate text-emerald-50 font-light hover:bg-emerald-500/10 transition-colors cursor-pointer appearance-none shadow-sm"
           >
             {Object.keys(groupedModels).length > 0 ? (
               Object.entries(groupedModels).map(([category, models]) => (
                 <optgroup
                   key={category}
                   label={category}
-                  className="bg-[#111] text-indigo-400 font-semibold"
+                  className="bg-[#0c331d] text-emerald-400 font-semibold"
                 >
                   {models.map((model) => (
                     <option
                       key={model.id}
                       value={model.id}
-                      className="text-gray-200 font-sans font-normal bg-[#0a0a0a]"
+                      className="text-gray-200 font-sans font-normal bg-[#082414]"
                     >
                       {model.id}
                     </option>
@@ -1520,8 +1520,8 @@ export default function App() {
             onClick={() => setShowSettings(!showSettings)}
             className={`p-2.5 rounded-xl transition-all ${
               showSettings
-                ? "bg-indigo-500/20 text-indigo-400 border border-indigo-500/30"
-                : "bg-white/5 text-gray-400 border border-white/5 hover:bg-white/10"
+                ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                : "bg-white/5 text-gray-400 border border-emerald-500/10 hover:bg-emerald-500/20"
             }`}
           >
             <Settings2 className="w-5 h-5" />
@@ -1536,10 +1536,10 @@ export default function App() {
             <div className="max-w-4xl mx-auto space-y-8 pb-20">
               {messages.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-[55vh] text-center opacity-70">
-                  <div className="p-5 bg-gradient-to-b from-indigo-500/10 to-transparent rounded-full mb-6 border border-indigo-500/10 shadow-[0_0_30px_rgba(99,102,241,0.05)]">
-                    <Box className="w-12 h-12 text-indigo-400" />
+                  <div className="p-5 bg-gradient-to-b from-emerald-500/10 to-transparent rounded-full mb-6 border border-emerald-500/10 shadow-[0_0_30px_rgba(16,185,129,0.05)]">
+                    <Box className="w-12 h-12 text-emerald-400" />
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-serif font-medium mb-4 text-indigo-50">
+                  <h2 className="text-2xl md:text-3xl font-serif font-medium mb-4 text-emerald-50">
                     Testing Endpoint: {selectedModel}
                   </h2>
                   <p className="text-base text-gray-400 max-w-md font-light leading-relaxed">
@@ -1559,12 +1559,12 @@ export default function App() {
                     <div
                       className={`max-w-[90%] md:max-w-[85%] rounded-3xl p-5 md:p-6 shadow-xl backdrop-blur-md ${
                         msg.role === "user"
-                          ? "bg-indigo-600/20 border border-indigo-500/30 text-indigo-50 rounded-br-sm"
-                          : "bg-white/5 border border-white/10 text-gray-200 rounded-bl-sm"
+                          ? "bg-emerald-600/20 border border-emerald-500/30 text-emerald-50 rounded-br-sm"
+                          : "bg-white/5 border border-emerald-500/20 text-gray-200 rounded-bl-sm"
                       }`}
                     >
                       {msg.image && (
-                        <div className="mb-5 rounded-2xl overflow-hidden max-w-sm border border-white/10 shadow-lg">
+                        <div className="mb-5 rounded-2xl overflow-hidden max-w-sm border border-emerald-500/20 shadow-lg">
                           <img
                             src={msg.image}
                             alt="Uploaded"
@@ -1574,8 +1574,8 @@ export default function App() {
                       )}
 
                       {msg.reasoning && (
-                        <div className="mb-5 p-4 bg-black/40 rounded-2xl border border-white/5 text-sm text-gray-400 flex flex-col gap-3 shadow-inner">
-                          <div className="flex items-center gap-2 text-indigo-400 font-medium text-xs uppercase tracking-widest font-mono">
+                        <div className="mb-5 p-4 bg-black/40 rounded-2xl border border-emerald-500/10 text-sm text-gray-400 flex flex-col gap-3 shadow-inner">
+                          <div className="flex items-center gap-2 text-emerald-400 font-medium text-xs uppercase tracking-widest font-mono">
                             <BrainCircuit className="w-4 h-4" />
                             Thinking Process
                           </div>
@@ -1586,7 +1586,7 @@ export default function App() {
                       )}
 
                       {msg.content ? (
-                        <div className="prose prose-invert prose-indigo max-w-none prose-p:leading-relaxed prose-pre:bg-black/50 prose-pre:border prose-pre:border-white/10 prose-headings:font-serif break-words">
+                        <div className="prose prose-invert prose-emerald max-w-none prose-p:leading-relaxed prose-pre:bg-black/50 prose-pre:border prose-pre:border-emerald-500/20 prose-headings:font-serif break-words">
                           <ReactMarkdown
                             components={{
                               img: ({ node, ...props }) => (
@@ -1598,7 +1598,7 @@ export default function App() {
                           </ReactMarkdown>
                         </div>
                       ) : msg.role === "assistant" && isGenerating ? (
-                        <div className="flex items-center gap-3 text-indigo-400/80 py-2">
+                        <div className="flex items-center gap-3 text-emerald-400/80 py-2">
                           <Loader2 className="w-5 h-5 animate-spin" />
                           <span className="text-sm tracking-wide font-light">
                             Awaiting API Response...
@@ -1614,10 +1614,10 @@ export default function App() {
           </div>
 
           {/* Input Area */}
-          <div className="p-4 md:p-6 bg-gradient-to-t from-[#020202] via-[#020202]/95 to-transparent border-t border-white/5 relative">
+          <div className="p-4 md:p-6 bg-gradient-to-t from-[#04120a] via-[#04120a]/95 to-transparent border-t border-emerald-500/10 relative">
             <div className="max-w-4xl mx-auto">
               {!userId.trim() || !userApiKey.trim() ? (
-                <div className="bg-[#050505] border border-amber-500/20 rounded-3xl p-8 flex flex-col md:flex-row gap-6 items-center shadow-2xl backdrop-blur-md">
+                <div className="bg-[#061a0f] border border-amber-500/20 rounded-3xl p-8 flex flex-col md:flex-row gap-6 items-center shadow-2xl backdrop-blur-md">
                   <div className="p-4 bg-amber-500/10 text-amber-400 rounded-full shrink-0">
                     <Key className="w-8 h-8" />
                   </div>
@@ -1655,7 +1655,7 @@ export default function App() {
                     exit={{ opacity: 0, height: 0, marginBottom: 0 }}
                     className="relative inline-block"
                   >
-                    <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/50 max-h-48 shadow-xl">
+                    <div className="relative rounded-2xl overflow-hidden border border-emerald-500/20 bg-black/50 max-h-48 shadow-xl">
                       {media.type === "image" ? (
                         <img
                           src={media.previewUrl}
@@ -1684,7 +1684,7 @@ export default function App() {
 
               <form
                 onSubmit={handleSubmit}
-                className="relative flex items-end gap-3 bg-[#050505] border border-white/10 rounded-[2rem] p-2 focus-within:border-indigo-500/40 focus-within:bg-[#0a0a0a] transition-all duration-300 shadow-2xl backdrop-blur-xl"
+                className="relative flex items-end gap-3 bg-[#061a0f] border border-emerald-500/20 rounded-[2rem] p-2 focus-within:border-emerald-500/40 focus-within:bg-[#082414] transition-all duration-300 shadow-2xl backdrop-blur-xl"
               >
                 <input
                   type="file"
@@ -1698,7 +1698,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="p-4 text-gray-400 hover:text-indigo-400 hover:bg-indigo-500/10 rounded-full transition-colors ml-1"
+                  className="p-4 text-gray-400 hover:text-emerald-400 hover:bg-emerald-500/10 rounded-full transition-colors ml-1"
                   title="Upload image or video"
                 >
                   <Upload className="w-5 h-5" />
@@ -1722,7 +1722,7 @@ export default function App() {
                 <button
                   type="submit"
                   disabled={isGenerating || (!input.trim() && !media.file)}
-                  className="p-4 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 disabled:opacity-50 disabled:from-white/10 disabled:to-white/5 disabled:text-gray-500 transition-all shadow-lg shadow-indigo-900/20 mr-1"
+                  className="p-4 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white rounded-full hover:from-emerald-500 hover:to-emerald-400 disabled:opacity-50 disabled:from-white/10 disabled:to-white/5 disabled:text-gray-500 transition-all shadow-lg shadow-emerald-900/20 mr-1"
                 >
                   <Send className="w-5 h-5" />
                 </button>
@@ -1741,17 +1741,17 @@ export default function App() {
               animate={{ width: 320, opacity: 1 }}
               exit={{ width: 0, opacity: 0 }}
               transition={{ type: "spring", bounce: 0, duration: 0.3 }}
-              className="border-l border-white/5 bg-[#050505] overflow-y-auto custom-scrollbar shrink-0 h-full relative"
+              className="border-l border-emerald-500/10 bg-[#061a0f] overflow-y-auto custom-scrollbar shrink-0 h-full relative"
             >
               <div className="w-[320px] p-6 space-y-8 absolute top-0 left-0">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2 text-gray-200 font-medium">
-                    <SlidersHorizontal className="w-5 h-5 text-indigo-400" />
+                    <SlidersHorizontal className="w-5 h-5 text-emerald-400" />
                     Parameters
                   </div>
                   <button
                     onClick={() => setShowSettings(false)}
-                    className="p-1 hover:bg-white/10 rounded-md text-gray-400 hover:text-white transition-colors"
+                    className="p-1 hover:bg-emerald-500/20 rounded-md text-gray-400 hover:text-white transition-colors"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -1766,7 +1766,7 @@ export default function App() {
                     value={systemPrompt}
                     onChange={(e) => setSystemPrompt(e.target.value)}
                     placeholder="You are a helpful assistant..."
-                    className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl p-3 text-sm text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-indigo-500/50 resize-none h-32 transition-all"
+                    className="w-full bg-[#082414] border border-emerald-500/20 rounded-xl p-3 text-sm text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-emerald-500/50 resize-none h-32 transition-all"
                   />
                 </div>
 
@@ -1787,7 +1787,7 @@ export default function App() {
                     step="0.01"
                     value={temperature}
                     onChange={(e) => setTemperature(parseFloat(e.target.value))}
-                    className="w-full accent-indigo-500"
+                    className="w-full accent-emerald-500"
                   />
                 </div>
 
@@ -1806,7 +1806,7 @@ export default function App() {
                     step="1"
                     value={maxTokens}
                     onChange={(e) => setMaxTokens(parseInt(e.target.value))}
-                    className="w-full accent-indigo-500"
+                    className="w-full accent-emerald-500"
                   />
                 </div>
 
@@ -1825,11 +1825,11 @@ export default function App() {
                     step="0.01"
                     value={topP}
                     onChange={(e) => setTopP(parseFloat(e.target.value))}
-                    className="w-full accent-indigo-500"
+                    className="w-full accent-emerald-500"
                   />
                 </div>
 
-                <div className="pt-4 border-t border-white/5">
+                <div className="pt-4 border-t border-emerald-500/10">
                   <p className="text-xs text-gray-500 font-light leading-relaxed">
                     These parameters will be sent directly to the selected
                     RUTEclien endpoint with your next request.
