@@ -11,6 +11,42 @@ const app = new Hono<{ Bindings: Bindings }>();
 let localAdminToken = "admin123";
 let localKeys: any[] = [];
 let localGlobals: Record<string, string> = {};
+let localCustomModels: any[] = [
+    { id: "image-generation" },
+    { id: "video-generation" },
+    { id: "meta/llama-3.1-70b-instruct" },
+    { id: "meta/llama-3.1-8b-instruct" },
+    { id: "meta/llama-3.2-90b-vision-instruct" },
+    { id: "meta/llama-3.2-11b-vision-instruct" },
+    { id: "meta/llama-3.2-3b-instruct" },
+    { id: "meta/llama-3.2-1b-instruct" },
+    { id: "meta/llama-3.3-70b-instruct" },
+    { id: "mistralai/mistral-large-3-675b-instruct-2512" },
+    { id: "mistralai/mistral-nemotron" },
+    { id: "google/gemma-2-2b-it" },
+    { id: "google/gemma-3-12b-it" },
+    { id: "google/gemma-3-4b-it" }
+];
+
+async function getCustomModels(c: any) {
+  if (c.env?.accounts_kv) {
+    try {
+      const models = await c.env.accounts_kv.get("customModels");
+      return models ? JSON.parse(models) : localCustomModels;
+    } catch (e) {
+      return localCustomModels;
+    }
+  }
+  return localCustomModels;
+}
+
+async function saveCustomModels(c: any, models: any[]) {
+  if (c.env?.accounts_kv) {
+    await c.env.accounts_kv.put("customModels", JSON.stringify(models));
+  } else {
+    localCustomModels = models;
+  }
+}
 
 async function getGlobals(c: any) {
   if (c.env?.accounts_kv) {
@@ -138,6 +174,20 @@ app.post("/admin/globals", async (c) => {
 
 app.post("/admin/verify", async (c) => {
   return c.json({ valid: true });
+});
+
+app.get("/custom-models", async (c) => {
+  const models = await getCustomModels(c);
+  return c.json(models);
+});
+
+app.post("/admin/custom-models", async (c) => {
+  const body = await c.req.json().catch(() => null);
+  if (body && Array.isArray(body.models)) {
+    await saveCustomModels(c, body.models);
+    return c.json({ success: true });
+  }
+  return c.json({ error: "Invalid payload" }, 400);
 });
 
 app.get("/models", async (c) => {

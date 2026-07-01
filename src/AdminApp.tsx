@@ -19,6 +19,7 @@ export default function AdminApp() {
     Array<{ id: string; key: string; limit: number; usage: number }>
   >([]);
   const [globals, setGlobals] = useState<Record<string, string>>({});
+  const [availableModels, setAvailableModels] = useState<{ id: string }[]>([]);
   const [editingKeyId, setEditingKeyId] = useState<string | null>(null);
   const [editingLimit, setEditingLimit] = useState<number>(0);
   const [error, setError] = useState("");
@@ -57,12 +58,42 @@ export default function AdminApp() {
         setError("");
         fetchKeys(token);
         fetchGlobals(token);
+        fetchModels(token);
       } else {
         setIsAuthenticated(false);
         setError("Invalid Admin Token");
       }
     } catch (e) {
       setError("Failed to verify token");
+    }
+  };
+
+  const fetchModels = async (token: string) => {
+    try {
+      const res = await fetch("/api/custom-models", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.ok) {
+        setAvailableModels(await res.json());
+      }
+    } catch (e) {
+      console.error("Failed to fetch models");
+    }
+  };
+
+  const saveModels = async (models: { id: string }[]) => {
+    setAvailableModels(models);
+    try {
+      await fetch("/api/admin/custom-models", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${adminToken}`,
+        },
+        body: JSON.stringify({ models }),
+      });
+    } catch (e) {
+      console.error("Failed to save models to backend");
     }
   };
 
@@ -303,6 +334,69 @@ export default function AdminApp() {
                 <p className="text-xs text-gray-500 mt-2 font-light">
                   This price will be displayed on the GET KEY page.
                 </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-[#050505] border border-white/5 rounded-2xl p-8 relative overflow-hidden group">
+            <h3 className="text-xl font-serif text-gray-200 mb-6">
+              Model Management
+            </h3>
+            
+            <div className="bg-[#0a0a0a] border border-white/5 rounded-2xl p-6 mb-8">
+              <h4 className="text-sm font-medium text-gray-300 mb-4">Add Custom Model</h4>
+              <div className="flex gap-3">
+                <input 
+                  type="text" 
+                  id="newModelId"
+                  placeholder="e.g. nvidia/llama-3.1-nemotron-70b-instruct" 
+                  className="flex-1 bg-[#111] border border-white/10 rounded-xl px-4 py-2 text-sm text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-indigo-500/50 transition-colors"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      const input = e.currentTarget;
+                      const newModel = input.value.trim();
+                      if (newModel && !availableModels.find(m => m.id === newModel)) {
+                        const newModels = [...availableModels, { id: newModel }];
+                        saveModels(newModels);
+                        input.value = '';
+                      }
+                    }
+                  }}
+                />
+                <button 
+                  onClick={() => {
+                    const input = document.getElementById('newModelId') as HTMLInputElement;
+                    const newModel = input.value.trim();
+                    if (newModel && !availableModels.find(m => m.id === newModel)) {
+                      const newModels = [...availableModels, { id: newModel }];
+                      saveModels(newModels);
+                      input.value = '';
+                    }
+                  }}
+                  className="bg-indigo-500 hover:bg-indigo-400 text-white px-6 py-2 rounded-xl text-sm font-medium transition-colors"
+                >
+                  Add Model
+                </button>
+              </div>
+            </div>
+
+            <div className="bg-[#0a0a0a] border border-white/5 rounded-2xl p-6">
+              <h4 className="text-sm font-medium text-gray-300 mb-4">Available Models</h4>
+              <div className="space-y-2 max-h-96 overflow-y-auto pr-2">
+                {availableModels.map(model => (
+                  <div key={model.id} className="flex items-center justify-between p-3 bg-[#111] border border-white/5 rounded-xl">
+                    <span className="text-sm font-mono text-gray-300">{model.id}</span>
+                    <button 
+                      onClick={() => {
+                        const newModels = availableModels.filter(m => m.id !== model.id);
+                        saveModels(newModels);
+                      }}
+                      className="p-2 hover:bg-red-500/10 text-red-500/70 hover:text-red-400 rounded-lg transition-colors"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

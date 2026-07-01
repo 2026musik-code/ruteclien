@@ -255,35 +255,18 @@ export default function App() {
   const [topP, setTopP] = useState(0.95);
   const [systemPrompt, setSystemPrompt] = useState("");
 
-  const [availableModels, setAvailableModels] = useState<{ id: string }[]>(() => {
-    const saved = localStorage.getItem("ruteclien_custom_models_v2");
-    if (saved) {
-      try {
-        return JSON.parse(saved);
-      } catch (e) {}
-    }
-    return [
-      { id: "image-generation" },
-      { id: "video-generation" },
-      { id: "meta/llama-3.1-70b-instruct" },
-      { id: "meta/llama-3.1-8b-instruct" },
-      { id: "meta/llama-3.2-90b-vision-instruct" },
-      { id: "meta/llama-3.2-11b-vision-instruct" },
-      { id: "meta/llama-3.2-3b-instruct" },
-      { id: "meta/llama-3.2-1b-instruct" },
-      { id: "meta/llama-3.3-70b-instruct" },
-      { id: "mistralai/mistral-large-3-675b-instruct-2512" },
-      { id: "mistralai/mistral-nemotron" },
-      { id: "google/gemma-2-2b-it" },
-      { id: "google/gemma-3-12b-it" },
-      { id: "google/gemma-3-4b-it" },
-      { id: "microsoft/phi-3-vision-128k-instruct" },
-      { id: "microsoft/phi-3.5-moe-instruct" },
-      { id: "microsoft/phi-4-mini-instruct" },
-      { id: "microsoft/phi-4-multimodal-instruct" },
-      { id: "upstage/solar-10.7b-instruct" },
-    ];
-  });
+  const [availableModels, setAvailableModels] = useState<{ id: string }[]>([]);
+
+  useEffect(() => {
+    fetch("/api/custom-models")
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          setAvailableModels(data);
+        }
+      })
+      .catch(console.error);
+  }, []);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -616,18 +599,13 @@ export default function App() {
 
               <button
                 onClick={() => {
-                  setView("admin");
-                  setShowMobileMenu(false);
+                  window.location.href = "/admin";
                 }}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                  view === "admin"
-                    ? "bg-indigo-500/10 text-indigo-300"
-                    : "text-gray-400 hover:bg-white/5 hover:text-gray-200"
-                }`}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-gray-400 hover:bg-white/5 hover:text-gray-200`}
               >
                 <Terminal className="w-5 h-5" />
                 <span className="font-medium text-sm tracking-wide">
-                  Admin (Models)
+                  Admin Dashboard
                 </span>
               </button>
 
@@ -1211,96 +1189,6 @@ export default function App() {
     );
   }
 
-  if (view === "admin") {
-    return (
-      <div className="min-h-screen bg-[#020202] text-gray-100 font-sans selection:bg-indigo-500/30">
-        {mobileMenuOverlay}
-        <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/5 bg-[#020202]/80 backdrop-blur-2xl">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setShowMobileMenu(true)}
-              className="sm:hidden p-2 -ml-2 hover:bg-white/10 rounded-full transition-colors text-gray-400 hover:text-white"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-              <Terminal className="w-4 h-4 text-white" />
-            </div>
-            <h1 className="text-xl font-medium tracking-tight">Admin (Models)</h1>
-          </div>
-        </header>
-
-        <main className="max-w-4xl mx-auto px-6 py-12">
-          <div className="mb-10">
-            <h2 className="text-3xl font-serif mb-3">Model Management</h2>
-            <p className="text-gray-400 font-light max-w-2xl">
-              Add or remove models available in the Playground.
-            </p>
-          </div>
-          
-          <div className="bg-[#0a0a0a] border border-white/5 rounded-2xl p-6 mb-8">
-            <h3 className="text-sm font-medium text-gray-300 mb-4">Add Custom Model</h3>
-            <div className="flex gap-3">
-              <input 
-                type="text" 
-                id="newModelId"
-                placeholder="e.g. nvidia/llama-3.1-nemotron-70b-instruct" 
-                className="flex-1 bg-[#111] border border-white/10 rounded-xl px-4 py-2 text-sm text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-indigo-500/50 transition-colors"
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    const input = e.currentTarget;
-                    const newModel = input.value.trim();
-                    if (newModel && !availableModels.find(m => m.id === newModel)) {
-                      const newModels = [...availableModels, { id: newModel }];
-                      setAvailableModels(newModels);
-                      localStorage.setItem("ruteclien_custom_models_v2", JSON.stringify(newModels));
-                      input.value = '';
-                    }
-                  }
-                }}
-              />
-              <button 
-                onClick={() => {
-                  const input = document.getElementById('newModelId') as HTMLInputElement;
-                  const newModel = input.value.trim();
-                  if (newModel && !availableModels.find(m => m.id === newModel)) {
-                    const newModels = [...availableModels, { id: newModel }];
-                    setAvailableModels(newModels);
-                    localStorage.setItem("ruteclien_custom_models_v2", JSON.stringify(newModels));
-                    input.value = '';
-                  }
-                }}
-                className="bg-indigo-500 hover:bg-indigo-400 text-white px-6 py-2 rounded-xl text-sm font-medium transition-colors"
-              >
-                Add Model
-              </button>
-            </div>
-          </div>
-
-          <div className="bg-[#0a0a0a] border border-white/5 rounded-2xl p-6">
-            <h3 className="text-sm font-medium text-gray-300 mb-4">Available Models</h3>
-            <div className="space-y-2">
-              {availableModels.map(model => (
-                <div key={model.id} className="flex items-center justify-between p-3 bg-[#111] border border-white/5 rounded-xl">
-                  <span className="text-sm font-mono text-gray-300">{model.id}</span>
-                  <button 
-                    onClick={() => {
-                      const newModels = availableModels.filter(m => m.id !== model.id);
-                      setAvailableModels(newModels);
-                      localStorage.setItem("ruteclien_custom_models_v2", JSON.stringify(newModels));
-                    }}
-                    className="p-2 hover:bg-red-500/10 text-red-500/70 hover:text-red-400 rounded-lg transition-colors"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </main>
-      </div>
-    );
-  }
 
   if (view === "dashboard") {
     return (
@@ -1699,7 +1587,15 @@ export default function App() {
 
                       {msg.content ? (
                         <div className="prose prose-invert prose-indigo max-w-none prose-p:leading-relaxed prose-pre:bg-black/50 prose-pre:border prose-pre:border-white/10 prose-headings:font-serif break-words">
-                          <ReactMarkdown>{msg.content}</ReactMarkdown>
+                          <ReactMarkdown
+                            components={{
+                              img: ({ node, ...props }) => (
+                                <img {...props} referrerPolicy="no-referrer" />
+                              ),
+                            }}
+                          >
+                            {msg.content}
+                          </ReactMarkdown>
                         </div>
                       ) : msg.role === "assistant" && isGenerating ? (
                         <div className="flex items-center gap-3 text-indigo-400/80 py-2">
