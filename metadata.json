@@ -1,0 +1,6 @@
+{
+  "name": "Vision AI Analyzer",
+  "description": "Analyze images and video frames using NVIDIA's stepfun-ai/step-3.7-flash model.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
