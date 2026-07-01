@@ -18,6 +18,7 @@ export default function AdminApp() {
   const [apiKeys, setApiKeys] = useState<
     Array<{ id: string; key: string; limit: number; usage: number }>
   >([]);
+  const [globals, setGlobals] = useState<Record<string, string>>({});
   const [editingKeyId, setEditingKeyId] = useState<string | null>(null);
   const [editingLimit, setEditingLimit] = useState<number>(0);
   const [error, setError] = useState("");
@@ -55,6 +56,7 @@ export default function AdminApp() {
         setIsAuthenticated(true);
         setError("");
         fetchKeys(token);
+        fetchGlobals(token);
       } else {
         setIsAuthenticated(false);
         setError("Invalid Admin Token");
@@ -74,6 +76,35 @@ export default function AdminApp() {
       }
     } catch (e) {
       console.error("Failed to fetch keys");
+    }
+  };
+
+  const fetchGlobals = async (token: string) => {
+    try {
+      const res = await fetch("/api/admin/globals", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.ok) {
+        setGlobals(await res.json());
+      }
+    } catch (e) {
+      console.error("Failed to fetch globals");
+    }
+  };
+
+  const saveGlobals = async (newGlobals: Record<string, string>) => {
+    setGlobals(newGlobals);
+    try {
+      await fetch("/api/admin/globals", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${adminToken}`,
+        },
+        body: JSON.stringify({ globals: newGlobals }),
+      });
+    } catch (e) {
+      console.error("Failed to save globals to backend");
     }
   };
 
@@ -271,6 +302,47 @@ export default function AdminApp() {
                 />
                 <p className="text-xs text-gray-500 mt-2 font-light">
                   This price will be displayed on the GET KEY page.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-[#050505] border border-white/5 rounded-2xl p-8 relative overflow-hidden group">
+            <h3 className="text-xl font-serif text-gray-200 mb-6">
+              Global API Keys & Tokens
+            </h3>
+            <div className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  NVIDIA API Key
+                </label>
+                <div className="flex gap-4">
+                  <input
+                    type="password"
+                    value={globals['NVIDIA_API_KEY'] || ""}
+                    onChange={(e) => setGlobals({...globals, 'NVIDIA_API_KEY': e.target.value})}
+                    placeholder="sk-..."
+                    className="flex-1 bg-[#0a0a0a] border border-white/10 rounded-xl px-4 py-3 text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-indigo-500/50 transition-colors"
+                  />
+                  <button
+                    onClick={() => saveGlobals(globals)}
+                    className="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-xl transition-colors font-medium whitespace-nowrap"
+                  >
+                    Save Key
+                  </button>
+                  <button
+                    onClick={() => {
+                      const newGlobals = { ...globals };
+                      delete newGlobals['NVIDIA_API_KEY'];
+                      saveGlobals(newGlobals);
+                    }}
+                    className="bg-rose-600 hover:bg-rose-500 text-white px-4 py-3 rounded-xl transition-colors font-medium whitespace-nowrap"
+                  >
+                    <Trash2 className="w-5 h-5" />
+                  </button>
+                </div>
+                <p className="text-xs text-gray-500 mt-2 font-light">
+                  This key is used globally for NVIDIA API calls if not set in environment variables.
                 </p>
               </div>
             </div>

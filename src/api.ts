@@ -8,19 +8,42 @@ type Bindings = {
 
 const app = new Hono<{ Bindings: Bindings }>();
 
-const getEnvVar = (key: string, c?: any) => {
+let localAdminToken = "admin123";
+let localKeys: any[] = [];
+let localGlobals: Record<string, string> = {};
+
+async function getGlobals(c: any) {
+  if (c.env?.accounts_kv) {
+    try {
+      const keys = await c.env.accounts_kv.get("globalKeys");
+      return keys ? JSON.parse(keys) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+  return localGlobals;
+}
+
+async function saveGlobals(c: any, globals: Record<string, string>) {
+  if (c.env?.accounts_kv) {
+    await c.env.accounts_kv.put("globalKeys", JSON.stringify(globals));
+  } else {
+    localGlobals = globals;
+  }
+}
+
+async function getGlobalConfig(c: any, key: string) {
+  const globals = await getGlobals(c);
+  if (globals[key]) return globals[key];
   if (c?.env?.[key]) return c.env[key];
   if (typeof globalThis !== 'undefined' && (globalThis as any).process?.env?.[key]) {
     return (globalThis as any).process.env[key];
   }
   return undefined;
-};
-
-let localAdminToken = getEnvVar('ADMIN_TOKEN') || "admin123";
-let localKeys: any[] = [];
+}
 
 async function getAdminToken(c: any) {
-  const envToken = getEnvVar('ADMIN_TOKEN', c);
+  const envToken = c?.env?.ADMIN_TOKEN || (typeof globalThis !== 'undefined' ? (globalThis as any).process?.env?.ADMIN_TOKEN : undefined);
   if (envToken) {
     return envToken;
   }
@@ -99,13 +122,27 @@ app.post("/admin/token", async (c) => {
   return c.json({ error: "Invalid payload" }, 400);
 });
 
+app.get("/admin/globals", async (c) => {
+  const globals = await getGlobals(c);
+  return c.json(globals);
+});
+
+app.post("/admin/globals", async (c) => {
+  const body = await c.req.json().catch(() => null);
+  if (body && body.globals) {
+    await saveGlobals(c, body.globals);
+    return c.json({ success: true });
+  }
+  return c.json({ error: "Invalid payload" }, 400);
+});
+
 app.post("/admin/verify", async (c) => {
   return c.json({ valid: true });
 });
 
 app.get("/models", async (c) => {
   try {
-    const apiKey = getEnvVar('NVIDIA_API_KEY', c);
+    const apiKey = await getGlobalConfig(c, 'NVIDIA_API_KEY');
     if (!apiKey) {
        return c.json({ error: "NVIDIA_API_KEY is not configured in environment." }, 500);
     }
@@ -228,7 +265,7 @@ app.post("/chat", async (c) => {
       );
     }
 
-    const apiKey = getEnvVar('NVIDIA_API_KEY', c);
+    const apiKey = await getGlobalConfig(c, 'NVIDIA_API_KEY');
     if (!apiKey) {
       return c.json({ error: "NVIDIA_API_KEY is not configured in environment." }, 500);
     }
