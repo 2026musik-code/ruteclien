@@ -6,17 +6,30 @@ type Bindings = {
   ADMIN_TOKEN: string;
 };
 
-const app = new Hono<{ Bindings: Bindings }>().basePath('/api');
+const app = new Hono<{ Bindings: Bindings }>();
 
-let localAdminToken = typeof process !== 'undefined' && process.env.ADMIN_TOKEN ? process.env.ADMIN_TOKEN : "admin123";
+const getEnvVar = (key: string, c?: any) => {
+  if (c?.env?.[key]) return c.env[key];
+  if (typeof globalThis !== 'undefined' && (globalThis as any).process?.env?.[key]) {
+    return (globalThis as any).process.env[key];
+  }
+  return undefined;
+};
+
+let localAdminToken = getEnvVar('ADMIN_TOKEN') || "admin123";
 let localKeys: any[] = [];
 
 async function getAdminToken(c: any) {
+  const envToken = getEnvVar('ADMIN_TOKEN', c);
+  if (envToken) {
+    return envToken;
+  }
+
   if (c.env?.accounts_kv) {
     const token = await c.env.accounts_kv.get("adminToken");
     if (token) return token;
   }
-  return c.env?.ADMIN_TOKEN || (typeof process !== 'undefined' ? process.env.ADMIN_TOKEN : undefined) || localAdminToken;
+  return localAdminToken;
 }
 
 async function saveAdminToken(c: any, token: string) {
@@ -92,7 +105,7 @@ app.post("/admin/verify", async (c) => {
 
 app.get("/models", async (c) => {
   try {
-    const apiKey = c.env?.NVIDIA_API_KEY || (typeof process !== 'undefined' ? process.env.NVIDIA_API_KEY : undefined);
+    const apiKey = getEnvVar('NVIDIA_API_KEY', c);
     if (!apiKey) {
        return c.json({ error: "NVIDIA_API_KEY is not configured in environment." }, 500);
     }
@@ -215,7 +228,7 @@ app.post("/chat", async (c) => {
       );
     }
 
-    const apiKey = c.env?.NVIDIA_API_KEY || (typeof process !== 'undefined' ? process.env.NVIDIA_API_KEY : undefined);
+    const apiKey = getEnvVar('NVIDIA_API_KEY', c);
     if (!apiKey) {
       return c.json({ error: "NVIDIA_API_KEY is not configured in environment." }, 500);
     }
